@@ -31,6 +31,7 @@ func parseCSV(filePath string) []student {
 	if err != nil {
 		panic(err)
 	}
+	defer rd.Close()
 
 	csvRd := csv.NewReader(rd)
 	records, err := csvRd.ReadAll()
