@@ -4,7 +4,6 @@ import (
 	"encoding/csv"
 	"io"
 	"os"
-	"strconv"
 )
 
 type Grade string
@@ -55,21 +54,12 @@ func parseCSV(filePath string) []student {
 	return students
 }
 
-func parseInt(s string) int {
-	n, err := strconv.Atoi(s)
-	if err != nil {
-		panic(err)
-	}
-
-	return n
-}
-
 func calculateGrade(students []student) []studentStat {
 	var stats []studentStat
 
 	for _, s := range students {
 		stat := studentStat{
-			student: s,
+			student:    s,
 			finalScore: avg(s),
 		}
 
@@ -78,23 +68,6 @@ func calculateGrade(students []student) []studentStat {
 	}
 
 	return stats
-}
-
-func avg(s student) float32 {
-	sum := s.test1Score + s.test2Score + s.test3Score + s.test4Score
-	return float32(sum) / 4
-}
-
-func grade(score float32) Grade {
-	if score < 35 {
-		return F
-	} else if score < 50 {
-		return C
-	} else if score < 70 {
-		return B
-	} else {
-		return A
-	}
 }
 
 func findOverallTopper(gradedStudents []studentStat) studentStat {
