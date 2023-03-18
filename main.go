@@ -73,11 +73,8 @@ func calculateGrade(students []student) []studentStat {
 func findOverallTopper(gradedStudents []studentStat) studentStat {
 	var topper studentStat
 	for _, s := range gradedStudents {
-		if s.finalScore > topper.finalScore {
-			topper = s
-		}
+		topper = max(s, topper)
 	}
-
 	return topper
 }
 
