@@ -1,4 +1,4 @@
-module github.com/one2nc/student-grading-go
+module github.com/namikaze-dev/student-grading-go
 
 go 1.19
 
