@@ -82,5 +82,13 @@ func findOverallTopper(gradedStudents []studentStat) studentStat {
 }
 
 func findTopperPerUniversity(gs []studentStat) map[string]studentStat {
-	return nil
+	var toppers = map[string]studentStat{}
+	for _, s := range gs {
+		if _, ok := toppers[s.university]; ok {
+			toppers[s.university] = max(s, toppers[s.university])
+		} else {
+			toppers[s.university] = s
+		}
+	}
+	return toppers
 }

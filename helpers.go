@@ -27,3 +27,11 @@ func parseInt(s string) int {
 
 	return n
 }
+
+func max(first, second studentStat) studentStat {
+	if first.finalScore > second.finalScore {
+		return first
+	} else {
+		return second
+	}
+}
