@@ -65,7 +65,36 @@ func parseInt(s string) int {
 }
 
 func calculateGrade(students []student) []studentStat {
-	return nil
+	var stats []studentStat
+
+	for _, s := range students {
+		stat := studentStat{
+			student: s,
+			finalScore: avg(s),
+		}
+
+		stat.grade = grade(stat.finalScore)
+		stats = append(stats, stat)
+	}
+
+	return stats
+}
+
+func avg(s student) float32 {
+	sum := s.test1Score + s.test2Score + s.test3Score + s.test4Score
+	return float32(sum) / 4
+}
+
+func grade(score float32) Grade {
+	if score < 35 {
+		return F
+	} else if score < 50 {
+		return C
+	} else if score < 70 {
+		return B
+	} else {
+		return A
+	}
 }
 
 func findOverallTopper(gradedStudents []studentStat) studentStat {
